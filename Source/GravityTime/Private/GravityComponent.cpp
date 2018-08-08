@@ -17,13 +17,16 @@ void UGravityComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	SetGravityDirectionAndForce();
+	OwningActor = GetOwner();
+	PhysicsObject = Cast<UStaticMeshComponent>(OwningActor->GetRootComponent());
 }
 
 void UGravityComponent::SetGravityDirectionAndForce()
 {
 	// TODO: Adjust to receive gravity from world
+	AGameModeBase *GameMode = GetWorld()->GetAuthGameMode();
 	GravityForce = 10.f;
-	GravityDirection = new FVector(0.f, 0.f, -GravityForce);
+	// GravityDirection = 
 }
 
 // Called every frame
@@ -33,6 +36,11 @@ void UGravityComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	
 	// SetGravityDirectionAndForce();
 
-	//
+	ApplyGravity();
 }
 
+void UGravityComponent::ApplyGravity()
+{
+	// TODO: Make this work
+	PhysicsObject->AddForce(GravityDirection * GravityForce * 100, NAME_None, true);
+}

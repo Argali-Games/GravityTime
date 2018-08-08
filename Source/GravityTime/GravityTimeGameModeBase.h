@@ -14,7 +14,15 @@ class GRAVITYTIME_API AGravityTimeGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+private:
+	FVector GravityDirection = FVector(0.f, 0.f, -1.f);
 	
-	
-	
+	float GravityForce = 10.f;
+
+public:
+	FVector GetGravityDirection() const;
+	void SetGravityDirection(FVector NewGravityDirection);
+
+	float GetGravityForce() const;
+	void SetGravityForce(float NewGravityForce);
 };

@@ -3,6 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "Engine/World.h"
+#include "Components/StaticMeshComponent.h"
 #include "Components/ActorComponent.h"
 #include "GravityComponent.generated.h"
 
@@ -28,8 +31,13 @@ private:
 
 	void ApplyGravity();
 
-	FVector *GravityDirection;
+	UPROPERTY(EditAnywhere)
+	FVector GravityDirection;
 
 	float GravityForce = 10.f;
+
+	AActor *OwningActor;
+
+	UStaticMeshComponent *PhysicsObject;
 	
 };
